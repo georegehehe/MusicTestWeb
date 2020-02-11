@@ -1,0 +1,61 @@
+<FirstGrid>
+    text1:text1
+    record_bttn:record_bttn
+    label1:label1
+    GridLayout
+        row_default_height: 100
+        row_force_default: True
+        cols: 1
+        size: root.width-200, root.height-200
+        center: root.width / 2, root.height / 2
+
+        Button:
+            rows:1
+            id: record_bttn
+            visible: True
+            text: "start recording"
+            on_press: root.callback()
+            size_hint_x: 1 if self.visible else 0
+            opacity: 1 if self.visible else 0
+            disabled: not self.visible
+    GridLayout
+        cols:  3
+        row_default_height: 100
+        row_force_default: True
+        size: root.width-200, root.height-200
+        center: root.width / 2, root.height / 3
+        Label:
+            visible: not record_bttn.visible
+            size_hint_x: 1 if self.visible else 0
+            opacity: 1 if self.visible else 0
+            id: label1
+            text: ""
+        AnchorLayout
+            anchor_x: 'right'
+            TextInput:
+                visible: not record_bttn.visible
+                id: text1
+                size_hint_x: 1 if self.visible else 0
+                opacity: 1 if self.visible else 0
+                text: "put your notes here"
+                on_text: root.callback1()
+                multiline: False
+                on_touch_down: root.callback2()
+                disabled: not self.visible
+        GridLayout
+            cols:4
+            row_default_height: 100
+            row_force_default: True
+            center: root.width / 2, root.height / 4
+            Button:
+                id: confirm_bttn
+                visible: not record_bttn.visible
+                size_hint_x: 1 if self.visible else 0
+                opacity: 1 if self.visible else 0
+                disabled: not self.visible
+                text: "Confirm Notes"
+                on_press: root.callback3()
+
+
+
+
