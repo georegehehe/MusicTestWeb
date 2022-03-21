@@ -8,13 +8,13 @@
 > 2. One can imagine the canvas functioning in the same way as popular music-making applications like Garage Band, where one can click on any empty spot to represent the input of a note an reclick to destroy the input.
 > 3. Musictest-web is nonetheless distinct in two ways from the existing music-making tools:
 >   1. Users without musical knowledge is the target user body. Users are encouraged to think of the canvas as an actual drawing board, and the input process can be cpompleted by simply swiping across the screen, leaving the rest of the music to be polished via the music theory algorithm.
->   2. Meanwhile, the originality of the generated songs are kept as there is a one to one relationship between the input drawing and the ouput audio file; that is, the ouput will always change to reflect the user's drawing on the canvas.   
+>   1. Meanwhile, the originality of the generated songs are kept as there is a one to one relationship between the input drawing and the ouput audio file; that is, the ouput will always change to reflect the user's drawing on the canvas.   
 ### Backend Implementation
 > 1. app.py, the main program that runs the application.
 > 1. Three distinct API are implemented using Flask: /, /humming, and /mix. All of them can be tested using http://localhost:5000/, http://localhost:5000/humming http://localhost:5000/mix respectively.
 >   1. The / interface translates the contents under templates/index.html to the browser, which shows the necessary components for all user interactions with the application.
->   2. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
->   3. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
+>   1. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
+>   1. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
 > 2. audio_to_midi_melodia.py utilizes Melodia to support the feature of converting audio-files into musical notes(currently terminated).
 > 3. norepeatmusictheory.py assembles the core components of the audio output, including adding the instrumentations and converting musical symbols into audio files through Mingus. Threading is applied to allow the simultaneous playback of multiple audio tracks.
 > 4. latestmusic.py contains the function "determination", which converts a list of symbols representing the melody into a list of numbers representing the chord progression. The musical aspect will not be discussed in detail here, but the implementation is made possible by a scoring system which determines the best combination of chord progression out of all possibilities.
@@ -26,7 +26,7 @@
 >       1. export default {props: defined the shapes including the dots that represent the notes and the curves connecting them.
 >       1. data() { return: defined the list that contains the coordinates of user inputs, which will later be fed a parameter into the backend programs.
 >       1. methods: cotains method including drawCoordinateLine, drawDotList, drawCurve, and the listening of mouse clicks as inputs for dotList
->   2. src/App.vue lays out index.html by utilizing the above codes and adding a few other gadgets to the interface, including the buttons responsible for deleting the input, switching between modes of input, and mixing and downloading the audio files.
+>   1. src/App.vue lays out index.html by utilizing the above codes and adding a few other gadgets to the interface, including the buttons responsible for deleting the input, switching between modes of input, and mixing and downloading the audio files.
 >       1. export default { Laying out the aforementioned ccomponents.
 >       1. methods: { contains the methods to achieve the aforementioned effects, including the transfer of data between backend and frontend.
 ### More Info
@@ -34,14 +34,14 @@
 ### Requirements
 > 1. Required python site-packages:
 >   1. numpy==1.6.1 (only for python 2.7)
->   2. SoundFile
->   3. resampy
->   4. vamp
->   5. MIDIUtil
->   6. jams
->   7. scipy
->   8. pandas
->   9. flask
+>   1. SoundFile
+>   1. resampy
+>   1. vamp
+>   1. MIDIUtil
+>   1. jams
+>   1. scipy
+>   1. pandas
+>   1. flask
 
 
 
