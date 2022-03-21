@@ -13,22 +13,22 @@
 > 1. app.py, the main program that runs the application.
 > 1. Three distinct API are implemented using Flask: /, /humming, and /mix. All of them can be tested using http://localhost:5000/, http://localhost:5000/humming http://localhost:5000/mix respectively.
 >     1. The / interface translates the contents under templates/index.html to the browser, which shows the necessary components for all user interactions with the application.
->     1. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
->     1. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
+>     1. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative type of input from the graphical one.
+>     1. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The added notes also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
 > 2. audio_to_midi_melodia.py utilizes Melodia to support the feature of converting audio-files into musical notes(currently terminated).
 > 3. norepeatmusictheory.py assembles the core components of the audio output, including adding the instrumentations and converting musical symbols into audio files through Mingus. Threading is applied to allow the simultaneous playback of multiple audio tracks.
-> 4. latestmusic.py contains the function "determination", which converts a list of symbols representing the melody into a list of numbers representing the chord progression. The musical aspect will not be discussed in detail here, but the implementation is made possible by a scoring system which determines the best combination of chord progression out of all possibilities.
-> 5. finalpercussion.py contains the percussion track of the audio output, which, unlike other instruments, is set to be constant regardless of the user input.
+> 4. latestmusic.py, the core music theory component, contains the function "determination", which converts a list of symbols representing the melody into a list of numbers representing the chord progression. The musical aspect will not be discussed in detail here, but the implementation is made possible by a scoring system which determines the best combination of chord progression out of all possible ones.
+> 5. finalpercussion.py contains the percussion track of the audio output, which, for simplicity purpose, is set to be constant regardless of the user input.
 > 6. All other python files are either being used for testing purposes during the program or made obsolete through updates.
 ### Frontend
 > 1. All necessary components of frontend are compiled and put under the static and templates directory. The latest version is modified based on https://github.com/keel2008GitHub/musictest-ui, where the templates for the source codes can be found.
 >   1. src/components/MusicalNote/index.vue: the vital component that is responsible for drawing the canvas and detecting mouse movements.
 >       1. export default {props: defined the shapes including the dots that represent the notes and the curves connecting them.
->       1. data() { return: defined the list that contains the coordinates of user inputs, which will later be fed a parameter into the backend programs.
->       1. methods: cotains method including drawCoordinateLine, drawDotList, drawCurve, and the listening of mouse clicks as inputs for dotList
+>       1. data() { return: defined the list that contains the coordinates of user inputs, which will later be fed as a parameter into the backend programs.
+>       1. methods: cotains method including drawCoordinateLine, drawDotList, drawCurve, and the listening of mouse clicks to construct the list of inputs.
 >   1. src/App.vue lays out index.html by utilizing the above codes and adding a few other gadgets to the interface, including the buttons responsible for deleting the input, switching between modes of input, and mixing and downloading the audio files.
 >       1. export default { Laying out the aforementioned ccomponents.
->       1. methods: { contains the methods to achieve the aforementioned effects, including the transfer of data between backend and frontend.
+>       1. methods: { contains the methods that achieve the aforementioned effects, including the transfer of data between backend and frontend.
 ### More Info
 > Please refer to https://musicwai.squarespace.com for more qualitative information about the project.
 ### Requirements
@@ -125,3 +125,5 @@
 >   2. src/App.vue index.html的布局代码, 调用上述MusicalNote绘制面板, 并在下方提供录音, 混音, 清除, about几个按钮.
 >       1. export default { 部分主要是布局MusicalNote组件.
 >       1. methods: { 部分主要是各种js效果, handlerPlay在展示播放进度条,deleteData调用MusicalNote清空面板, startRecord响应麦克风按钮, 完成录音和上传(调用src/js/record.js), mixHas接受混音按钮把dotList发给后台完成混音.
+### 更多信息
+> 1.请查看https://musicwai.squarespace.com
