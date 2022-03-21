@@ -1,4 +1,52 @@
 # Manual
+### Introduction
+> 1. Musictest-web is a web application that automatically generates music from graphical inputs.
+> 2. Flask and Melodia are utilized to support Backend development, which enabled the uploading of the audio files and the conversion between graphical inputs and musical notes, which is being fed into the codes from the original "musictest"-the core algorithm that harmonizes the single line of melody into a complete piece of song.
+> 3. Fronted development utilizes Vue to centralize the maneuvering of the canvas upon which users make their "drawings" that will be converted into music and played back as an audio file.
+### Features
+> 1. Once implemented, the webpage will show a large canvas labeled by musical notes as its y-axis and current beat as its x axis.
+> 2. One can imagine the canvas functioning in the same way as popular music-making applications like Garage Band, where one can click on any empty spot to represent the input of a note an reclick to destroy the input.
+> 3. Musictest-web is nonetheless distinct in two ways from the existing music-making tools:
+>   1. Users without musical knowledge is the target user body. Users are encouraged to think of the canvas as an actual drawing board, and the input process can be cpompleted by simply swiping across the screen, leaving the rest of the music to be polished via the music theory algorithm.
+>   2. Meanwhile, the originality of the generated songs are kept as there is a one to one relationship between the input drawing and the ouput audio file; that is, the ouput will always change to reflect the user's drawing on the canvas.   
+### Implementation
+> 1. app.py, the main program that runs the application.
+> 1. Three distinct API are implemented using Flask: /, /humming, and /mix. All of them can be tested using http://localhost:5000/, http://localhost:5000/humming http://localhost:5000/mix respectively.
+>   1. The / interface translates the contents under templates/index.html to the browser, which shows the necessary components for all user interactions with the application.
+>   2. The /humming interface is intended for an alternative type input method by translating unpolished audio recordings into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
+>   3. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
+> 2. audio_to_midi_melodia.py utilizes Melodia to support the feature of converting audio-files into musical notes(currently terminated).
+> 3. norepeatmusictheory.py assembles the core components of the audio output, including adding the instrumentations and converting musical symbols into audio files through the Mingus. Threading is applied to allow the simultaneous playback of multiple audio tracks.
+> 4. latestmusic.py contains the function "determination", which converts a list of symbols representing the melody into a list of numbers representing the chord progression. The musical aspect will not be discussed in detail here, but the implementation is made possible by a scoring system which determines the best combination of chord progression out of all possibilities.
+> 5. finalpercussion.py contains the percussion track of the audio output, which is independent from the user input.
+> 6. All other python files are either being used for testing purposes during the program or made obsolete through updates.
+### Frontend
+> 1. All necessary components of frontend are compiled and put under the static and templates directory. The latest version is modified based on https://github.com/keel2008GitHub/musictest-ui, where the templates of the source codes can be found.
+>   1. src/components/MusicalNote/index.vue: the vital component that is responsible for drawing the canvas and detecting mouse movements.
+>       1. export default {props: defined the shapes including the dots that represent the notes and the curves connecting them.
+>       1. data() { return: defined the list that contains the coordinates of user inputs, which will later be returned as a parameter for the backend programs.
+>       1. methods: cotains method including drawCoordinateLine, drawDotList, drawCurve, and the listening of mouse clicks as inputs for dotList
+>   2. src/App.vue builds toward index.html by utilizing the above codes and adding a few other gadgets to the interface, including the buttons responsible for deleting the input, switching between modes of input, and mixing, deleting, and downloading the audio files.
+>       1. export default { Laying out the aforementioned ccomponents.
+>       1. methods: { contains the methods to achieve the aforementioned effects, including the transfer of data between backend and frontend.
+### More Info
+> Please refer to https://musicwai.squarespace.com for more qualitative information about the project.
+### Requirements
+> 1. Required python site-packages:
+>   1. numpy==1.6.1 (only for python 2.7)
+>   2. SoundFile
+>   3. resampy
+>   4. vamp
+>   5. MIDIUtil
+>   6. jams
+>   7. scipy
+>   8. pandas
+>   9. flask
+
+
+
+
+## 简体中文
 ### 整体介绍
 > 1. :6musictest-web是一个网页谱曲应用, 技术上采用前后端分离式开发, 合并部署方案.
 > 2. Backend采用flask和melodia技术, 实现了音频上传, 音符识别,调用musictest的原有代码完成混音.
