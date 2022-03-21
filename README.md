@@ -126,4 +126,4 @@
 >       1. export default { 部分主要是布局MusicalNote组件.
 >       1. methods: { 部分主要是各种js效果, handlerPlay在展示播放进度条,deleteData调用MusicalNote清空面板, startRecord响应麦克风按钮, 完成录音和上传(调用src/js/record.js), mixHas接受混音按钮把dotList发给后台完成混音.
 ### 更多信息
-> 1.请查看https://musicwai.squarespace.com
+> 请查看https://musicwai.squarespace.com
