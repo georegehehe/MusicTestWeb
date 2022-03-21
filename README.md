@@ -12,9 +12,9 @@
 ### Backend Implementation
 > 1. app.py, the main program that runs the application.
 > 1. Three distinct API are implemented using Flask: /, /humming, and /mix. All of them can be tested using http://localhost:5000/, http://localhost:5000/humming http://localhost:5000/mix respectively.
->   1. The / interface translates the contents under templates/index.html to the browser, which shows the necessary components for all user interactions with the application.
->   1. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
->   1. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
+>     1. The / interface translates the contents under templates/index.html to the browser, which shows the necessary components for all user interactions with the application.
+>     1. The /humming interface is intended for an alternative input method by translating unpolished audio recordings through humming into the microphone into recognizable pitches. However, the side project was halted due to unstable performance. The idea was to use soundfile to convert wave files into data flows, which will then be converted into frequency values and finally the musical notes that can serve an alternative input from the graphical ones.
+>     1. The /mix interface feed the list of coordinates from the user input into the backend programs in the form of "Pitch|current-beat". It also handles the errors that might appear due to the lack of valid inputs by filling in at least one note for every measure (A lack of note is represented through the symbol 'None'). The change is also reflected onto the canvas via the /mix interface, as well as the upload of musical files.  
 > 2. audio_to_midi_melodia.py utilizes Melodia to support the feature of converting audio-files into musical notes(currently terminated).
 > 3. norepeatmusictheory.py assembles the core components of the audio output, including adding the instrumentations and converting musical symbols into audio files through Mingus. Threading is applied to allow the simultaneous playback of multiple audio tracks.
 > 4. latestmusic.py contains the function "determination", which converts a list of symbols representing the melody into a list of numbers representing the chord progression. The musical aspect will not be discussed in detail here, but the implementation is made possible by a scoring system which determines the best combination of chord progression out of all possibilities.
@@ -33,15 +33,15 @@
 > Please refer to https://musicwai.squarespace.com for more qualitative information about the project.
 ### Requirements
 > 1. Required python site-packages:
->   1. numpy==1.6.1 (only for python 2.7)
->   1. SoundFile
->   1. resampy
->   1. vamp
->   1. MIDIUtil
->   1. jams
->   1. scipy
->   1. pandas
->   1. flask
+>     1. numpy==1.6.1 (only for python 2.7)
+>     1. SoundFile
+>     1. resampy
+>     1. vamp
+>     1. MIDIUtil
+>     1. jams
+>     1. scipy
+>     1. pandas
+>     1. flask
 
 
 
